@@ -1,0 +1,11 @@
+@import url("https://fonts.googleapis.com/css?family=Muli");
+
+body{
+    margin:0;
+}
+
+* {
+    font-family: 'Muli';
+    background-color: rgb(226, 226, 226);
+    user-select: none;
+}
