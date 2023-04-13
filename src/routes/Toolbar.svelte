@@ -3,66 +3,35 @@
 	$: console.log($files);
 </script>
 
-<button class="generateButton" on:click={() => ($isMapModalOpen = true)}>Generate map</button>
 <div class="buttonContainer">
 	<input type="file" bind:files={$files} />
-	<button class="buttonClass">Input a link</button>
+	<button class="generateButton" on:click={() => ($isMapModalOpen = true)}>Generate map</button>
 </div>
 
 <style>
-	.generateButton {
-		height: 100px;
-		width: 100px;
-		border-radius: 100%;
-		color: whitesmoke;
-		text-align: center;
-		align-self: flex-end;
-		background-color: darkblue;
-		margin-left: 80%;
-		border-color: whitesmoke;
+	.buttonContainer {
+		display: flex;
+		justify-content: center;
+		gap: 90px;
+		background-color: #000099;
+		padding-bottom: 40px;
 	}
 	input[type='file'] {
-		width: 35%;
-		max-width: 100%;
-		color: black;
+		width: 250px;
+		height: 30px;
+		color: whitesmoke;
 		padding: 5px;
-		background: whitesmoke;
+		background: #000099;
 		border-radius: 10px;
-		margin-left: 20%;
-		height: 70%;
+		border: solid whitesmoke 1px;
 	}
 	input[type='file']::file-selector-button {
 		margin-right: 20px;
-		border: none;
-		background: darkblue;
+		background: whitesmoke;
 		padding: 6px 20px;
 		border-radius: 10px;
-		color: aliceblue;
+		color: #000099;
 		cursor: pointer;
-	}
-
-	input[type='file']::file-selector-button:hover {
-		background: rgb(49, 49, 213);
-	}
-
-	.buttonClass {
-		border-radius: 10px;
-		width: 20%;
-		height: 80%;
-		font-size: 15px;
-		border: none;
-		background: darkblue;
-		border-radius: 10px;
-		color: aliceblue;
-		cursor: pointer;
-		margin-right: 11%;
-	}
-	.buttonContainer {
-		display: flex;
-		flex-direction: row;
-		gap: 20%;
-		width: 60%;
-		height: 5%;
-		margin-left: 15%;
+		border: solid whitesmoke 1px;
 	}
 </style>

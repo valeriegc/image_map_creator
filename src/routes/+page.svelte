@@ -1,31 +1,39 @@
 <script lang="ts">
-	import { isMapModalOpen } from './stores';
+	import { isMapModalOpen, files } from './stores';
 	import MapModal from './MapModal.svelte';
 	import Toolbar from './Toolbar.svelte';
 	import Canvas from './Canvas.svelte';
+	import PlaceHolder from './Placeholder.svelte';
 </script>
 
-<div class="pageWrapper">
-	<h1>Image-map Creator</h1>
-	<Toolbar />
-	<Canvas />
+{#if $isMapModalOpen}
+	<MapModal />
+{/if}
 
-	{#if $isMapModalOpen}
-		<MapModal />
+<div class="pageWrapper">
+	<header>
+		<h1>Image-map Generator</h1>
+	</header>
+	<Toolbar />
+	{#if !$files}
+		<PlaceHolder />
 	{/if}
+	<Canvas />
 </div>
 
 <style>
+	header {
+		display: flex;
+		justify-content: center;
+		z-index: 1;
+		background-color: #000099;
+	}
 	h1 {
-		font-size: 40px;
-		background-color: darkblue;
-		border-radius: 10px;
-		padding-inline: 10px;
-		padding-bottom: 5px;
-		text-align: center;
-		width: 40%;
-		margin-left: 27%;
+		background-color: #000099;
+		margin-top: 50px;
+		font-size: 50px;
 		color: white;
+		height: 100px;
 	}
 	/* make header div that will be full width by itself and make that a flex box */
 </style>

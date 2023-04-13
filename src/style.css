@@ -6,6 +6,16 @@ body{
 
 * {
     font-family: 'Muli';
-    background-color: rgb(226, 226, 226);
+    background-color:whitesmoke;
     user-select: none;
+}
+
+button{
+    background-color: transparent;
+    color: whitesmoke;
+    border: solid 1px whitesmoke;
+    border-radius: 10px;
+    cursor:pointer;
+    padding-inline: 30px;
+
 }

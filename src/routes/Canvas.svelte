@@ -41,57 +41,53 @@
 </script>
 
 {#if $files?.[0]}
-	<p class="fileName">
-		{$files[0].name}
-	</p>
-	<div class="imageCanvasWrap" on:mousedown={logMouseDown}>
-		<img src={URL.createObjectURL($files[0])} />
-		{#each $mapObjects as coordinate, i}
-			<div
-				class="areaRect"
-				on:mousedown|stopPropagation={(e) => svgMoveStart(e, i)}
-				on:mousemove={svgMoveExecute}
-				on:mouseup={svgMoveEnd}
-				style="height:{$mapObjects[i].heigth}px; width:{$mapObjects[i].width}px;top: {$mapObjects[i]
-					.y}px; left: {$mapObjects[i].x}px;"
-			>
-				<input
-					class="linkInput"
-					placeholder="submit link here"
-					bind:value={$mapObjects[i].link}
-					type="text"
-				/>
+	<div class="completeWrap">
+		<div class="imageCanvasWrap" on:mousedown={logMouseDown}>
+			<img src={URL.createObjectURL($files[0])} />
+			{#each $mapObjects as coordinate, i}
 				<div
-					class="circle"
-					style="position:absolute;bottom:-5px; right:-5px;  overflow:visible"
-					on:mousedown|stopPropagation={(e) => resizeStart(e, i)}
-					on:mouseup={resizeEnd}
-				/>
-			</div>
-		{/each}
+					class="areaRect"
+					on:mousedown|stopPropagation={(e) => svgMoveStart(e, i)}
+					on:mousemove={svgMoveExecute}
+					on:mouseup={svgMoveEnd}
+					style="height:{$mapObjects[i].heigth}px; width:{$mapObjects[i].width}px;top: {$mapObjects[
+						i
+					].y}px; left: {$mapObjects[i].x}px;"
+				>
+					<input
+						class="linkInput"
+						placeholder="submit link here"
+						bind:value={$mapObjects[i].link}
+						type="text"
+					/>
+					<div
+						class="circle"
+						style="position:absolute;bottom:-5px; right:-5px;  overflow:visible"
+						on:mousedown|stopPropagation={(e) => resizeStart(e, i)}
+						on:mouseup={resizeEnd}
+					/>
+				</div>
+			{/each}
+		</div>
 	</div>
 {/if}
 
 <style>
+	.completeWrap {
+		display: flex;
+		justify-content: center;
+		width: 100%;
+	}
 	.imageCanvasWrap {
 		position: relative;
-		height: fit-content;
-		width: fit-content;
-		align-self: center;
+		margin-top: 30px;
+		overflow: hidden;
 	}
 	.linkInput {
 		background-color: whitesmoke;
 		border: 1px solid darkgrey;
 		border-radius: 5px;
 		height: 40%;
-	}
-	.fileName {
-		background-color: whitesmoke;
-		border-radius: 10px;
-		margin-left: 27%;
-		height: fit-content;
-		padding-inline: 10px;
-		width: fit-content;
 	}
 	img {
 		border: solid darkblue 5px;
