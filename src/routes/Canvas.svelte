@@ -47,6 +47,13 @@
 
 {#if $files?.[0]}
 	<div class="completeWrap">
+		<div class="inputWrap">
+			Please input the source for your image here:
+			<input
+				bind:value={$userProvidedLink}
+				style="margin-left:10px;border-radius:5px; border-color:darkblue; color:darkblue"
+			/>
+		</div>
 		<div class="imageCanvasWrap" on:mousedown={logMouseDown}>
 			<img src={URL.createObjectURL($files[0])} />
 			{#each $mapObjects as _, i}
@@ -76,17 +83,15 @@
 				</div>
 			{/each}
 		</div>
-		<div class="inputWrap">
-			Please input the source for your image here:
-			<input bind:value={$userProvidedLink} />
-		</div>
 	</div>
 {/if}
 
 <style>
 	.inputWrap {
 		margin-top: 30px;
-		padding-left: 10px;
+		color: darkblue;
+		font-size: 15px;
+		font-weight: bold;
 	}
 	.completeWrap {
 		display: flex;
