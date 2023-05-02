@@ -51,7 +51,7 @@
 			Please input the source for your image here:
 			<input
 				bind:value={$userProvidedLink}
-				style="margin-left:10px;border-radius:5px; border-color:darkblue; color:darkblue"
+				style="margin-left:10px;border-radius:5px; border: solid darkblue 2px; color:darkblue"
 			/>
 		</div>
 		<div class="imageCanvasWrap" on:mousedown={logMouseDown}>
