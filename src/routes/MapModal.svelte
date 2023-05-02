@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { isMapModalOpen, mapObjects } from './stores';
+	import { isMapModalOpen, mapObjects, userProvidedLink } from './stores';
 	import { onMount } from 'svelte';
 
 	let dialog: HTMLDialogElement;
 
-	let imagemap = `<img src = "" alt="" usemap="">
+	let imagemap = `<img src = "${$userProvidedLink}" alt="" usemap="">
     <map name="">`;
 	onMount(() => {
 		dialog.showModal();

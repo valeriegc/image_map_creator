@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { files, mapObjects } from './stores';
+	import { files, mapObjects, userProvidedLink } from './stores';
 
 	let svgMoving = false;
 	let resizing = true;
@@ -76,14 +76,23 @@
 				</div>
 			{/each}
 		</div>
+		<div class="inputWrap">
+			Please input the source for your image here:
+			<input bind:value={$userProvidedLink} />
+		</div>
 	</div>
 {/if}
 
 <style>
+	.inputWrap {
+		margin-top: 30px;
+		padding-left: 10px;
+	}
 	.completeWrap {
 		display: flex;
-		justify-content: center;
+		align-items: center;
 		width: 100%;
+		flex-direction: column;
 	}
 	.imageCanvasWrap {
 		position: relative;
