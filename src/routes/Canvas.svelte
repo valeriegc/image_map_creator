@@ -5,6 +5,11 @@
 	let resizing = true;
 	let currentIndex: number;
 
+	function removeArea(i:number){
+     $mapObjects.splice(i,1)
+	 $mapObjects = $mapObjects
+	}
+
 	function resizeStart(event: MouseEvent, i: number) {
 		resizing = true;
 		currentIndex = i;
@@ -44,7 +49,7 @@
 	<div class="completeWrap">
 		<div class="imageCanvasWrap" on:mousedown={logMouseDown}>
 			<img src={URL.createObjectURL($files[0])} />
-			{#each $mapObjects as coordinate, i}
+			{#each $mapObjects as _, i}
 				<div
 					class="areaRect"
 					on:mousedown|stopPropagation={(e) => svgMoveStart(e, i)}
@@ -66,6 +71,12 @@
 						on:mousedown|stopPropagation={(e) => resizeStart(e, i)}
 						on:mouseup={resizeEnd}
 					/>
+					<!-- svelte-ignore a11y-click-events-have-key-events -->
+					<div 
+						class="remove"
+						style="position:absolute;top:-14px; right: -14px; overflow:visible"
+						on:click={()=>removeArea(i)}>x</div>
+
 				</div>
 			{/each}
 		</div>
@@ -106,5 +117,13 @@
 		border-radius: 100%;
 		border: solid 3px darkblue;
 		background-color: whitesmoke;
+	}
+	.remove{
+		height:12px;
+		width: 12px;
+		border-radius: 100%;
+		background-color:transparent;
+		color:darkred;
+		font-size: 12px;
 	}
 </style>
