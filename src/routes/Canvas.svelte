@@ -5,9 +5,9 @@
 	let resizing = true;
 	let currentIndex: number;
 
-	function removeArea(i:number){
-     $mapObjects.splice(i,1)
-	 $mapObjects = $mapObjects
+	function removeArea(i: number) {
+		$mapObjects.splice(i, 1);
+		$mapObjects = $mapObjects;
 	}
 
 	function resizeStart(event: MouseEvent, i: number) {
@@ -72,11 +72,7 @@
 						on:mouseup={resizeEnd}
 					/>
 					<!-- svelte-ignore a11y-click-events-have-key-events -->
-					<div 
-						class="remove"
-						style="position:absolute;top:-14px; right: -14px; overflow:visible"
-						on:click={()=>removeArea(i)}>x</div>
-
+					<div class="remove" on:click={() => removeArea(i)}>x</div>
 				</div>
 			{/each}
 		</div>
@@ -118,12 +114,12 @@
 		border: solid 3px darkblue;
 		background-color: whitesmoke;
 	}
-	.remove{
-		height:12px;
-		width: 12px;
-		border-radius: 100%;
-		background-color:transparent;
-		color:darkred;
+	.remove {
+		background-color: transparent;
+		color: darkred;
 		font-size: 12px;
+		position: absolute;
+		top: -12px;
+		right: -12px;
 	}
 </style>
