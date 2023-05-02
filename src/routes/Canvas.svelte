@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { files, mapObjects } from './stores';
+	import { files, mapObjects, userProvidedLink } from './stores';
 
 	let svgMoving = false;
 	let resizing = true;
@@ -47,6 +47,13 @@
 
 {#if $files?.[0]}
 	<div class="completeWrap">
+		<div class="inputWrap">
+			Please input the source for your image here:
+			<input
+				bind:value={$userProvidedLink}
+				style="margin-left:10px;border-radius:5px; border: solid darkblue 2px; color:darkblue"
+			/>
+		</div>
 		<div class="imageCanvasWrap" on:mousedown={logMouseDown}>
 			<img src={URL.createObjectURL($files[0])} />
 			{#each $mapObjects as _, i}
@@ -80,10 +87,17 @@
 {/if}
 
 <style>
+	.inputWrap {
+		margin-top: 30px;
+		color: darkblue;
+		font-size: 15px;
+		font-weight: bold;
+	}
 	.completeWrap {
 		display: flex;
-		justify-content: center;
+		align-items: center;
 		width: 100%;
+		flex-direction: column;
 	}
 	.imageCanvasWrap {
 		position: relative;
