@@ -103,6 +103,7 @@
 		position: relative;
 		margin-top: 30px;
 		overflow: hidden;
+		cursor: crosshair;
 	}
 	.linkInput {
 		background-color: whitesmoke;
@@ -127,6 +128,7 @@
 		border-radius: 100%;
 		border: solid 3px darkblue;
 		background-color: whitesmoke;
+		cursor: nwse-resize;
 	}
 	.remove {
 		background-color: transparent;
