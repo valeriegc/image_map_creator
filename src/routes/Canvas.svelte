@@ -38,8 +38,6 @@
 	}
 </script>
 
-<div class="lol" use:resizeArea />
-
 {#if $files?.[0]}
 	<div class="completeWrap">
 		<div class="inputWrap">
