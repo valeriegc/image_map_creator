@@ -2,10 +2,12 @@
 	import Modal from '$lib/Modal.svelte';
 	import { isMapModalOpen, mapObjects, userProvidedLink } from './stores';
 	import { onMount } from 'svelte';
+	let open = false;
 
 	let imagemap = `<img src = "${$userProvidedLink}" alt="" usemap="">
     <map name="">`;
 	onMount(() => {
+		open = true;
 		for (let i = 0; i < $mapObjects.length; i++) {
 			imagemap =
 				imagemap +
@@ -21,15 +23,22 @@
 	}
 </script>
 
-<Modal open={true}>
-	<div class="map">{imagemap}</div>
-	<footer>
-		<button class="buttonClass1" on:click={copyToClipBoard}>Copy to clipboard</button>
-		<button class="buttonClass1" on:click={() => ($isMapModalOpen = false)}>Return to start</button>
-	</footer>
+<Modal {open}>
+	<div class="container">
+		<div class="map">{imagemap}</div>
+		<footer>
+			<button class="buttonClass1" on:click={copyToClipBoard}>Copy to clipboard</button>
+			<button class="buttonClass1" on:click={() => ($isMapModalOpen = false)}>Return</button>
+		</footer>
+	</div>
 </Modal>
 
 <style>
+	.container {
+		display: flex;
+		flex-direction: column;
+		height: 400px;
+	}
 	.buttonClass1 {
 		margin-block: 3%;
 		padding-block: 10px;

@@ -1,8 +1,14 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+
+	let mounted = false;
+	onMount(() => {
+		mounted = true;
+	});
 	let dialog: HTMLDialogElement;
 	export let open: boolean;
 
-	$: if (open) {
+	$: if (open && mounted) {
 		dialog.showModal();
 	}
 </script>
@@ -15,11 +21,8 @@
 	dialog {
 		border-radius: 20px;
 		border: 0;
-		height: 400px;
 		width: 700px;
 		padding: 0;
-		display: flex;
-		flex-direction: column;
 	}
 	dialog::backdrop {
 		background: rgba(0, 0, 0, 0.7);
