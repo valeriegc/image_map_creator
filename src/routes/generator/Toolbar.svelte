@@ -14,7 +14,8 @@
 		justify-content: center;
 		gap: 90px;
 		background-color: #000099;
-		padding-bottom: 40px;
+		padding-top: 20px;
+		height: 120px;
 	}
 	input[type='file'] {
 		width: 250px;
