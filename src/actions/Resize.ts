@@ -1,63 +1,56 @@
 interface FirstRect {
 	width: number;
 	height: number;
-	left: number;
-	right: number;
-	top: number;
-	bottom: number;
 }
 
 export function resizeArea(element: HTMLElement) {
 	const rightBottom = document.createElement('div');
-
 	rightBottom.classList.add('grabber');
-
-	let moving: EventTarget | null = null;
-	let firstRect: FirstRect | null = null;
-	let firstPosition: { x: number; y: number } | null = null;
+	rightBottom.addEventListener('mousedown', onMousedown);
 
 	element.appendChild(rightBottom);
 
-	rightBottom.addEventListener('mousedown', onMousedown);
+	let movingTarget: EventTarget | null = null;
+	let initialSize: FirstRect | null = null;
+	let firstPosition: { x: number; y: number } | null = null;
 
 	function onMousedown(event: MouseEvent) {
-		moving = event.target;
+		movingTarget = event.target;
+		//get properties of the area we wish to resize, parent of the event listening div
 		const rect = element.getBoundingClientRect();
+		//get the parent of the area that is being resized
 		const parent = element.parentElement?.getBoundingClientRect();
 
 		if (!parent) return;
 
-		firstRect = {
+		initialSize = {
 			width: rect.width,
-			height: rect.height,
-			left: rect.left - parent.left,
-			right: parent.right - rect.right,
-			top: rect.top - parent.top,
-			bottom: parent.bottom - rect.bottom
+			height: rect.height
 		};
 
 		firstPosition = { x: event.pageX, y: event.pageY };
 	}
-	function onMouseup() {
-		if (!moving) return;
+	window.addEventListener('mouseup', onMouseup);
 
-		moving = null;
-		firstRect = null;
+	function onMouseup() {
+		if (!movingTarget) return;
+
+		movingTarget = null;
+		initialSize = null;
 		firstPosition = null;
 	}
 
+	window.addEventListener('mousemove', whileMoving);
+
 	function whileMoving(event: MouseEvent) {
-		if (!moving || !firstRect || !firstPosition) return;
+		if (!movingTarget || !initialSize || !firstPosition) return;
 
 		const deltaX = firstPosition.x - event.pageX;
-		element.style.width = `${firstRect.width - deltaX}px`;
+		element.style.width = `${initialSize.width - deltaX}px`;
 
 		const deltaY = event.pageY - firstPosition.y;
-		element.style.height = `${firstRect.height + deltaY}px`;
+		element.style.height = `${initialSize.height + deltaY}px`;
 	}
-
-	window.addEventListener('mousemove', whileMoving);
-	window.addEventListener('mouseup', onMouseup);
 
 	return {
 		destroy() {

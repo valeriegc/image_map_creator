@@ -52,7 +52,7 @@
 			{#each $mapObjects as _, i}
 				<div
 					class="areaRect"
-					use:resizeArea
+					use:resizeArea={$mapObjects}
 					on:mousedown|stopPropagation={(e) => svgMoveStart(e, i)}
 					on:mousemove={svgMoveExecute}
 					on:mouseup={svgMoveEnd}
