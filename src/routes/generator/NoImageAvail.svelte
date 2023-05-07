@@ -1,3 +1,7 @@
+<script>
+	//@ts-nocheck - svg from creativecommons - no typechecking needed.
+</script>
+
 <svg
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:cc="http://creativecommons.org/ns#"
