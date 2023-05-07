@@ -3,42 +3,33 @@
 	import { files, mapObjects, userProvidedLink } from './stores';
 
 	let svgMoving = false;
-	let resizing = true;
-	let currentIndex: number;
 
 	function removeArea(i: number) {
 		$mapObjects.splice(i, 1);
 		$mapObjects = $mapObjects;
 	}
 
-	function logMouseDown(event: MouseEvent) {
+	function addArea(event: MouseEvent) {
 		$mapObjects.push({ x: event.offsetX, y: event.offsetY, link: '', heigth: 50, width: 200 });
 		$mapObjects = $mapObjects;
 	}
 
-	function svgMoveStart(event: MouseEvent, i: number) {
+	function svgMoveStart() {
 		svgMoving = true;
-		currentIndex = i;
 	}
 
-	function svgMoveExecute(event: MouseEvent) {
+	function svgMoveExecute(event: MouseEvent, i: number) {
 		if (svgMoving) {
-			$mapObjects[currentIndex].x += event.movementX;
-			$mapObjects[currentIndex].y += event.movementY;
-			$mapObjects = $mapObjects;
-		} else if (resizing) {
-			$mapObjects[currentIndex].heigth = event.movementY - $mapObjects[currentIndex].heigth;
-			$mapObjects[currentIndex].width = event.movementX - $mapObjects[currentIndex].width;
+			$mapObjects[i].x += event.movementX;
+			$mapObjects[i].y += event.movementY;
 			$mapObjects = $mapObjects;
 		}
 	}
 
-	function svgMoveEnd(event: MouseEvent) {
+	function svgMoveEnd() {
 		svgMoving = false;
 	}
 </script>
-
-<div class="lol" use:resizeArea />
 
 {#if $files?.[0]}
 	<div class="completeWrap">
@@ -49,15 +40,14 @@
 				style="margin-left:10px;border-radius:5px; border: solid darkblue 2px; color:darkblue"
 			/>
 		</div>
-		<div class="imageCanvasWrap" on:mousedown={logMouseDown}>
+		<div class="imageCanvasWrap" on:mousedown={addArea} on:mouseup={svgMoveEnd}>
 			<img src={URL.createObjectURL($files[0])} />
 			{#each $mapObjects as _, i}
 				<div
 					class="areaRect"
 					use:resizeArea
-					on:mousedown|stopPropagation={(e) => svgMoveStart(e, i)}
-					on:mousemove={svgMoveExecute}
-					on:mouseup={svgMoveEnd}
+					on:mousedown|stopPropagation={svgMoveStart}
+					on:mousemove|stopPropagation={(e) => svgMoveExecute(e, i)}
 					style="height:{$mapObjects[i].heigth}px; width:{$mapObjects[i].width}px;top: {$mapObjects[
 						i
 					].y}px; left: {$mapObjects[i].x}px;"
