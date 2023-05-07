@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resizeArea } from '../actions/Resize';
 	import { files, mapObjects, userProvidedLink } from './stores';
 
 	let svgMoving = false;
@@ -8,14 +9,6 @@
 	function removeArea(i: number) {
 		$mapObjects.splice(i, 1);
 		$mapObjects = $mapObjects;
-	}
-
-	function resizeStart(event: MouseEvent, i: number) {
-		resizing = true;
-		currentIndex = i;
-	}
-	function resizeEnd(event: MouseEvent) {
-		resizing = false;
 	}
 
 	function logMouseDown(event: MouseEvent) {
@@ -59,6 +52,7 @@
 			{#each $mapObjects as _, i}
 				<div
 					class="areaRect"
+					use:resizeArea
 					on:mousedown|stopPropagation={(e) => svgMoveStart(e, i)}
 					on:mousemove={svgMoveExecute}
 					on:mouseup={svgMoveEnd}
@@ -72,11 +66,10 @@
 						bind:value={$mapObjects[i].link}
 						type="text"
 					/>
+
 					<div
 						class="circle"
 						style="position:absolute;bottom:-5px; right:-5px;  overflow:visible"
-						on:mousedown|stopPropagation={(e) => resizeStart(e, i)}
-						on:mouseup={resizeEnd}
 					/>
 					<!-- svelte-ignore a11y-click-events-have-key-events -->
 					<div class="remove" on:click={() => removeArea(i)}>x</div>
@@ -87,6 +80,27 @@
 {/if}
 
 <style>
+	.areaRect {
+		z-index: 1;
+		position: absolute;
+		border: darkgrey solid 2px;
+		background-color: RGBA(255, 255, 255, 0.4);
+		cursor: pointer;
+		display: flex;
+	}
+	:global(.grabber) {
+		position: absolute;
+		box-sizing: border-box;
+		height: 7px;
+		width: 7px;
+		bottom: -7px;
+		right: -7px;
+		cursor: se-resize;
+		border-radius: 100%;
+		border: solid 2px darkblue;
+		background-color: whitesmoke;
+	}
+
 	.inputWrap {
 		margin-top: 30px;
 		color: darkblue;
@@ -109,26 +123,12 @@
 		background-color: whitesmoke;
 		border: 1px solid darkgrey;
 		border-radius: 5px;
-		height: 40%;
+		height: 20%;
+		width: 75%;
+		font-size: small;
 	}
 	img {
 		border: solid darkblue 5px;
-	}
-	.areaRect {
-		z-index: 1;
-		position: absolute;
-		border: darkgrey solid 2px;
-		background-color: RGBA(255, 255, 255, 0.4);
-		cursor: pointer;
-		display: flex;
-	}
-	.circle {
-		height: 7px;
-		width: 7px;
-		border-radius: 100%;
-		border: solid 3px darkblue;
-		background-color: whitesmoke;
-		cursor: nwse-resize;
 	}
 	.remove {
 		background-color: transparent;
