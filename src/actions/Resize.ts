@@ -1,21 +1,31 @@
-export function resizeArea(element) {
+interface FirstRect {
+	width: number;
+	height: number;
+	left: number;
+	right: number;
+	top: number;
+	bottom: number;
+}
+
+export function resizeArea(element: HTMLElement) {
 	const rightBottom = document.createElement('div');
-	rightBottom.direction = 'northwest';
 
 	rightBottom.classList.add('grabber');
 
-	let moving = null,
-		firstRect = null,
-		firstPosition = null;
+	let moving: EventTarget | null = null;
+	let firstRect: FirstRect | null = null;
+	let firstPosition: { x: number; y: number } | null = null;
 
 	element.appendChild(rightBottom);
 
 	rightBottom.addEventListener('mousedown', onMousedown);
 
-	function onMousedown(event) {
+	function onMousedown(event: MouseEvent) {
 		moving = event.target;
 		const rect = element.getBoundingClientRect();
-		const parent = element.parentElement.getBoundingClientRect();
+		const parent = element.parentElement?.getBoundingClientRect();
+
+		if (!parent) return;
 
 		firstRect = {
 			width: rect.width,
@@ -27,26 +37,23 @@ export function resizeArea(element) {
 		};
 
 		firstPosition = { x: event.pageX, y: event.pageY };
-		moving.classList.add('selected');
 	}
 	function onMouseup() {
 		if (!moving) return;
 
-		moving.classList.remove('selected');
 		moving = null;
 		firstRect = null;
 		firstPosition = null;
 	}
 
-	function whileMoving(event) {
-		if (!moving) return;
+	function whileMoving(event: MouseEvent) {
+		if (!moving || !firstRect || !firstPosition) return;
 
-		let delta;
+		const deltaX = firstPosition.x - event.pageX;
+		element.style.width = `${firstRect.width - deltaX}px`;
 
-		delta = firstPosition.x - event.pageX;
-		element.style.width = `${firstRect.width - delta}px`;
-		delta = event.pageY - firstPosition.y;
-		element.style.height = `${firstRect.height + delta}px`;
+		const deltaY = event.pageY - firstPosition.y;
+		element.style.height = `${firstRect.height + deltaY}px`;
 	}
 
 	window.addEventListener('mousemove', whileMoving);
