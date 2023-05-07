@@ -3,7 +3,6 @@
 	import { files, mapObjects, userProvidedLink } from './stores';
 
 	let svgMoving = false;
-	let currentIndex: number;
 
 	function removeArea(i: number) {
 		$mapObjects.splice(i, 1);
@@ -15,7 +14,7 @@
 		$mapObjects = $mapObjects;
 	}
 
-	function svgMoveStart(event: MouseEvent, i: number) {
+	function svgMoveStart() {
 		svgMoving = true;
 	}
 
@@ -27,7 +26,7 @@
 		}
 	}
 
-	function svgMoveEnd(event: MouseEvent) {
+	function svgMoveEnd() {
 		svgMoving = false;
 	}
 </script>
@@ -47,7 +46,7 @@
 				<div
 					class="areaRect"
 					use:resizeArea
-					on:mousedown|stopPropagation={(e) => svgMoveStart(e, i)}
+					on:mousedown|stopPropagation={svgMoveStart}
 					on:mousemove|stopPropagation={(e) => svgMoveExecute(e, i)}
 					style="height:{$mapObjects[i].heigth}px; width:{$mapObjects[i].width}px;top: {$mapObjects[
 						i
