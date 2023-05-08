@@ -6,7 +6,7 @@
 <main>
 	<div class="upperHalf" />
 	<header>
-		<h1>I M A G E &nbsp M A P</h1>
+		<h1>IMAGE MAP</h1>
 	</header>
 	<form method="POST">
 		<h2>USER LOGIN</h2>
@@ -50,6 +50,7 @@
 		height: 100px;
 		text-align: center;
 		margin: 0;
+		letter-spacing: 1.5rem;
 	}
 	form {
 		display: flex;
@@ -98,8 +99,8 @@
 	.loginButton {
 		height: 60px;
 		width: 295px;
-		background-color: whitesmoke;
-		color: #000099;
+		background-color: white;
+		color: var(--navyblue);
 		font-weight: bold;
 		font-size: 1rem;
 	}
