@@ -14,7 +14,7 @@
 				<input type="file" bind:files={$files} />
 			</div>
 			OR
-			<label style="margin-top:7%;background-color:transparent;font-weight:bold"
+			<label style="margin-top:7%;font-weight:bold"
 				>Input a link
 				<input type="text" bind:value={$imageLinkFromUser} style="margin-top:1%" />
 				{#if $imageLinkFromUser !== null}
@@ -30,9 +30,6 @@
 
 <style>
 	button {
-		background-color: transparent;
-	}
-	h3 {
 		background-color: transparent;
 	}
 	.container {
