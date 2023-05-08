@@ -3,100 +3,112 @@
 	import UserIconSmall from '../icons/UserIconSmall.svelte';
 </script>
 
-<div class="pageWrap">
+<main>
+	<div class="upperHalf" />
 	<header>
-		<h1>Image-map Generator</h1>
+		<h1>I M A G E &nbsp M A P</h1>
 	</header>
-	<div class="formBox">
-		<p class="loginTitle">USER LOGIN</p>
-		<form method="POST" class="formWrap">
-			<Lock />
-			<UserIconSmall />
-			<label>
-				<input name="email" type="email" placeholder="Username" />
-			</label>
-			<label>
-				<input name="password" type="password" placeholder="Password" />
-			</label>
-		</form>
+	<form method="POST">
+		<h2>USER LOGIN</h2>
+		<label>
+			<div class="userIconContainer">
+				<UserIconSmall />
+			</div>
+			<input name="email" type="email" placeholder="Username" />
+		</label>
+		<label>
+			<input name="password" type="password" placeholder="Password" />
+			<div class="lockContainer">
+				<Lock />
+			</div>
+		</label>
 		<button class="loginButton">LOGIN</button>
-		<p>Forgot your credentials?</p>
-		<p>Create an account</p>
-	</div>
-</div>
+		<div>
+			<p>Forgot your credentials?</p>
+			<p>Create an account</p>
+		</div>
+	</form>
+</main>
 
 <style>
-	::placeholder {
-		color: #000099;
-		padding-left: 20%;
+	main {
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
 	}
-	.loginTitle {
+	.upperHalf {
+		z-index: -1;
+		height: 60vh;
+		background-color: var(--lightrose);
+		position: absolute;
+		width: 100%;
+	}
+	h1 {
+		padding-top: 50px;
+		font-size: 6rem;
+		color: var(--navyblue);
+		height: 100px;
+		text-align: center;
+		margin: 0;
+	}
+	form {
+		display: flex;
+		flex-direction: column;
+		padding: 60px;
+		height: 500px;
+		width: 500px;
+		align-items: center;
+		border-radius: 20px;
+		background-color: #000099;
+		color: whitesmoke;
+		gap: 40px;
+		margin: auto;
+	}
+	h2 {
 		font-weight: 900;
-		font-size: 1.5rem;
-		padding: 0;
+		font-size: 3rem;
 		margin: 0;
 	}
 	label {
 		font-size: 1rem;
-		margin-left: 4%;
-		margin-bottom: 3%;
+		position: relative;
 	}
 	input {
-		border-radius: 12.5px;
-		margin-bottom: 20px;
-		height: 30%;
+		border-radius: 12px;
 		border: none;
 		background-color: rgba(255, 255, 255, 0.7);
+		font-size: 1.5rem;
+		padding: 10px;
 	}
-	p {
-		font-weight: bold;
-		font-size: 11px;
+	input::placeholder {
+		color: #000099;
+		text-align: center;
 	}
-	.pageWrap {
-		width: 100%;
-		height: 800px;
+
+	.lockContainer {
+		position: absolute;
+		right: -8px;
+		top: -8px;
 	}
-	.formWrap {
-		width: 100%;
-		gap: 20px;
-		margin-top: 10%;
-		background-color: transparent;
-		position: relative;
-		justify-content: center;
-		padding-left: 40%;
-	}
-	.formBox {
-		display: flex;
-		flex-direction: column;
-		padding-top: 2%;
-		padding-bottom: 1%;
-		height: 250px;
-		width: 300px;
-		align-items: center;
-		margin-left: 39%;
-		border-radius: 20px;
-		background-color: #000099;
-		align-self: center;
-		justify-self: center;
-		color: whitesmoke;
+	.userIconContainer {
+		position: absolute;
+		left: -8px;
+		top: -8px;
 	}
 	.loginButton {
-		height: 50px;
-		width: 160px;
+		height: 60px;
+		width: 295px;
 		background-color: whitesmoke;
 		color: #000099;
 		font-weight: bold;
-		margin-top: 4%;
+		font-size: 1rem;
 	}
-	header {
-		display: flex;
-		justify-content: center;
-		z-index: 1;
-	}
-	h1 {
-		margin-top: 50px;
-		font-size: 50px;
-		color: #000099;
-		height: 100px;
+
+	p {
+		margin: 0;
+		font-weight: bold;
+		font-size: 1.5rem;
+		text-align: center;
+		margin-bottom: 10px;
 	}
 </style>

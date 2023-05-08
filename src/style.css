@@ -17,3 +17,8 @@ button {
 	cursor: pointer;
 	padding-inline: 30px;
 }
+:root {
+	--navyblue: #000099;
+	--lightrose: #b49fcc;
+	--lightbeige: #ead7d7;
+}

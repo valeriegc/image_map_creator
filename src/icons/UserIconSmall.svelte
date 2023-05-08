@@ -5,32 +5,30 @@
 
 <style>
 	.userProfileBody {
-		height: 40px;
-		width: 50px;
+		height: 80px;
+		width: 100px;
 		position: absolute;
-		top: 22px;
+		top: 42px;
 		border-radius: 100%;
 		left: -6px;
-		background-color: whitesmoke;
+		background-color: white;
 	}
 	.userProfileHead {
-		height: 15px;
-		width: 15px;
+		height: 30px;
+		width: 30px;
 		background-color: white;
 		border-radius: 100%;
 		position: absolute;
-		right: 10px;
-		top: 6px;
+		left: 20px;
+		top: 12px;
 	}
 	.userIcon {
 		position: absolute;
-		border: solid white 1.5px;
-		left: 29%;
-		height: 35px;
-		width: 35px;
+		border: solid white 2px;
+		height: 70px;
+		width: 70px;
 		border-radius: 100%;
-		top: -8%;
-		background-color: #000099;
+		background-color: var(--navyblue);
 		overflow: hidden;
 	}
 </style>

@@ -6,49 +6,44 @@
 
 <style>
 	.lockIcon {
-		position: absolute;
-		border: solid white 1.5px;
-		background-color: #000099;
+		border: solid white 2px;
+		background-color: var(--navyblue);
 		border-radius: 100%;
-		height: 35px;
-		width: 35px;
-		left: 62%;
-		top: 50%;
+		height: 65px;
+		width: 65px;
 	}
 	.lockIconBox {
-		height: 10px;
-		width: 15px;
+		height: 20px;
+		width: 30px;
 		border: white solid 2px;
 		position: absolute;
 		top: 45%;
-		left: 24%;
+		left: 26%;
 		border-bottom-left-radius: 20%;
 		border-bottom-right-radius: 20%;
 		z-index: 2;
-		background-color: #000099;
+		background-color: var(--navyblue);
 	}
 	.lockIconCircle {
-		height: 3.5px;
-		width: 3.5px;
+		height: 7px;
+		width: 7px;
 		border: white solid 2px;
 		position: absolute;
-		top: 45%;
-		left: 24%;
 		border-bottom-left-radius: 20%;
 		border-bottom-right-radius: 20%;
 		border-radius: 100%;
 		top: 55%;
-		left: 40%;
+		left: 43%;
 		z-index: 3;
-		background-color: #000099;
+		background-color: var(--navyblue);
 	}
 	.lockIconHalfCircle {
-		height: 10px;
-		width: 10px;
-		border: white solid 1.5px;
+		height: 20px;
+		width: 20px;
+		border: white solid 2px;
 		position: absolute;
 		top: 25%;
-		left: 32%;
+		left: 34%;
 		border-bottom-left-radius: 20%;
 		border-bottom-right-radius: 20%;
 		border-radius: 100%;
