@@ -14,17 +14,18 @@
 				<input type="file" bind:files={$files} />
 			</div>
 			OR
-			<label style="margin-top:7%;background-color:transparent;font-weight:bold">Input a link</label
-			>
-			<input type="text" bind:value={$imageLinkFromUser} style="margin-top:1%" />
+			<label style="margin-top:7%;background-color:transparent;font-weight:bold"
+				>Input a link
+				<input type="text" bind:value={$imageLinkFromUser} style="margin-top:1%" />
+				{#if $imageLinkFromUser !== null}
+					<button
+						on:click={() => ($startModalOpen = false)}
+						style="background-color:darkblue; width:40px; padding:0">Start</button
+					>
+				{/if}
+			</label>
 		</div>
 	</div>
-	<button
-		on:click={() => ($startModalOpen = false)}
-		style="width:15px; position:absolute; right:5px;
-        top:5px;font-size: 30px; border-style:none;color:darkblue
-        ">x</button
-	>
 </Modal>
 
 <style>
@@ -61,5 +62,23 @@
 		gap: 10%;
 		padding: 5%;
 		border: solid rgb(177, 177, 229) 2px;
+	}
+	input[type='file'] {
+		width: 250px;
+		height: 30px;
+		color: whitesmoke;
+		padding: 5px;
+		background: #000099;
+		border-radius: 10px;
+		border: solid whitesmoke 1px;
+	}
+	input[type='file']::file-selector-button {
+		margin-right: 20px;
+		background: whitesmoke;
+		padding: 6px 20px;
+		border-radius: 10px;
+		color: #000099;
+		cursor: pointer;
+		border: solid whitesmoke 1px;
 	}
 </style>
