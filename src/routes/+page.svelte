@@ -1,72 +1,115 @@
-<div class="pageWrap">
+<script>
+	import Lock from '../icons/Lock.svelte';
+	import UserIconSmall from '../icons/UserIconSmall.svelte';
+</script>
+
+<main>
+	<div class="upperHalf" />
 	<header>
-		<h1>Image-map Generator</h1>
+		<h1>IMAGE MAP</h1>
 	</header>
-	<div class="formBox">
-		<p style="font-size: 14px; margin-bottom:10px;">Please input your email and password below:</p>
-		<form method="POST" class="formWrap">
-			<label>
-				Email <input name="email" type="email" style="margin-left:37px" />
-			</label>
-			<label>
-				Password <input name="password" type="password" style="margin-left:5px" />
-			</label>
-		</form>
-		<button><a href="./generator" style="background:transparent;color:whitesmoke ">Login</a></button
-		>
-		<p style="margin-top:20px">Forgotten your credentials? Click here.</p>
-		<p>Create a user account here</p>
-	</div>
-</div>
+	<form method="POST">
+		<h2>USER LOGIN</h2>
+		<label>
+			<div class="userIconContainer">
+				<UserIconSmall />
+			</div>
+			<input name="email" type="email" placeholder="Username" />
+		</label>
+		<label>
+			<input name="password" type="password" placeholder="Password" />
+			<div class="lockContainer">
+				<Lock />
+			</div>
+		</label>
+		<button class="loginButton">LOGIN</button>
+		<div>
+			<p>Forgot your credentials?</p>
+			<p>Create an account</p>
+		</div>
+	</form>
+</main>
 
 <style>
-	label {
-		font-size: 12px;
-	}
-	input {
-		border-radius: 12.5px;
-		margin-bottom: 20px;
-	}
-	p {
-		font-weight: bold;
-		font-size: 11px;
-	}
-	.pageWrap {
-		background-color: lightgrey;
-		width: 100%;
-		height: 800px;
-	}
-	.formWrap {
-		width: 250px;
-		gap: 20px;
-	}
-	.formBox {
+	main {
+		height: 100vh;
 		display: flex;
 		flex-direction: column;
-		padding: 30px;
-		height: 250px;
-		width: 300px;
-		align-items: center;
-		margin-left: 450px;
-		margin-top: 20px;
-		border-radius: 20px;
 	}
-	button {
-		height: 30px;
-		width: 80px;
-		background-color: #000099;
-		color: whitesmoke;
-		padding: 0;
-	}
-	header {
-		display: flex;
-		justify-content: center;
-		z-index: 1;
+	.upperHalf {
+		z-index: -1;
+		height: 60vh;
+		background-color: var(--lightrose);
+		position: absolute;
+		width: 100%;
 	}
 	h1 {
-		margin-top: 50px;
-		font-size: 50px;
-		color: #000099;
+		padding-top: 50px;
+		font-size: 6rem;
+		color: var(--navyblue);
 		height: 100px;
+		text-align: center;
+		margin: 0;
+		letter-spacing: 1.5rem;
+	}
+	form {
+		display: flex;
+		flex-direction: column;
+		padding: 60px;
+		height: 500px;
+		width: 500px;
+		align-items: center;
+		border-radius: 20px;
+		background-color: #000099;
+		color: whitesmoke;
+		gap: 40px;
+		margin: auto;
+	}
+	h2 {
+		font-weight: 900;
+		font-size: 3rem;
+		margin: 0;
+	}
+	label {
+		font-size: 1rem;
+		position: relative;
+	}
+	input {
+		border-radius: 12px;
+		border: none;
+		background-color: rgba(255, 255, 255, 0.7);
+		font-size: 1.5rem;
+		padding: 10px;
+	}
+	input::placeholder {
+		color: #000099;
+		text-align: center;
+	}
+
+	.lockContainer {
+		position: absolute;
+		right: -8px;
+		top: -8px;
+	}
+	.userIconContainer {
+		position: absolute;
+		left: -8px;
+		top: -8px;
+	}
+	.loginButton {
+		height: 60px;
+		width: 295px;
+		background-color: white;
+		color: var(--navyblue);
+		font-weight: bold;
+		font-size: 1rem;
+	}
+
+	p {
+		margin: 0;
+		font-weight: bold;
+		font-size: 1.5rem;
+		text-align: center;
+		margin-bottom: 10px;
 	}
 </style>

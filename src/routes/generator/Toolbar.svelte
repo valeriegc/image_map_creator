@@ -31,7 +31,6 @@
 	.shapeBox {
 		height: 70px;
 		width: 320px;
-		background-color: transparent;
 		border-radius: 20px;
 		position: absolute;
 		top: 10px;
@@ -44,9 +43,9 @@
 		width: 230px;
 		position: absolute;
 		left: 50px;
-		background-color: transparent;
 		border: white 1px dashed;
 		color: white;
+		background-color: transparent;
 	}
 	.userProfileBody {
 		height: 80px;
@@ -55,6 +54,7 @@
 		top: 50px;
 		border-radius: 100%;
 		left: -6px;
+		background-color: whitesmoke;
 	}
 	.userProfileHead {
 		height: 35px;

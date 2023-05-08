@@ -6,7 +6,6 @@ body {
 
 * {
 	font-family: 'Muli';
-	background-color: whitesmoke;
 	user-select: none;
 }
 
@@ -17,4 +16,9 @@ button {
 	border-radius: 10px;
 	cursor: pointer;
 	padding-inline: 30px;
+}
+:root {
+	--navyblue: #000099;
+	--lightrose: #b49fcc;
+	--lightbeige: #ead7d7;
 }
