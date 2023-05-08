@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { resizeArea } from '../../actions/Resize';
-	import { files, mapObjects, userProvidedLink } from './stores';
+	import { files, imageLinkFromUser, mapObjects, userProvidedLink } from './stores';
 
 	let svgMoving = false;
 
@@ -31,17 +31,10 @@
 	}
 </script>
 
-{#if $files?.[0]}
+{#if $files?.[0] || $imageLinkFromUser}
 	<div class="completeWrap">
-		<div class="inputWrap">
-			Please input the source for your image here:
-			<input
-				bind:value={$userProvidedLink}
-				style="margin-left:10px;border-radius:5px; border: solid darkblue 2px; color:darkblue"
-			/>
-		</div>
 		<div class="imageCanvasWrap" on:mousedown={addArea} on:mouseup={svgMoveEnd}>
-			<img src={URL.createObjectURL($files[0])} />
+			<img src={$files !== null ? URL.createObjectURL($files[0]) : $imageLinkFromUser} />
 			{#each $mapObjects as _, i}
 				<div
 					class="areaRect"
@@ -75,8 +68,8 @@
 	.areaRect {
 		z-index: 1;
 		position: absolute;
-		border: darkgrey solid 2px;
-		background-color: RGBA(255, 255, 255, 0.4);
+		border: darkblue solid 1px;
+		background-color: RGBA(0, 0, 139, 0.1);
 		cursor: pointer;
 		display: flex;
 	}
@@ -117,7 +110,7 @@
 		border-radius: 5px;
 		height: 20%;
 		width: 75%;
-		font-size: small;
+		font-size: 10px;
 	}
 	img {
 		border: solid darkblue 5px;

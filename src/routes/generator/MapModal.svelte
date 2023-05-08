@@ -1,13 +1,13 @@
 <script lang="ts">
+	import Modal from '$lib/Modal.svelte';
 	import { isMapModalOpen, mapObjects, userProvidedLink } from './stores';
 	import { onMount } from 'svelte';
-
-	let dialog: HTMLDialogElement;
+	let open = false;
 
 	let imagemap = `<img src = "${$userProvidedLink}" alt="" usemap="">
     <map name="">`;
 	onMount(() => {
-		dialog.showModal();
+		open = true;
 		for (let i = 0; i < $mapObjects.length; i++) {
 			imagemap =
 				imagemap +
@@ -23,27 +23,21 @@
 	}
 </script>
 
-<dialog bind:this={dialog}>
-	<div class="map">{imagemap}</div>
-	<footer>
-		<button class="buttonClass1" on:click={copyToClipBoard}>Copy to clipboard</button>
-		<button class="buttonClass1" on:click={() => ($isMapModalOpen = false)}>Return to start</button>
-	</footer>
-</dialog>
+<Modal {open}>
+	<div class="container">
+		<div class="map">{imagemap}</div>
+		<footer>
+			<button class="buttonClass1" on:click={copyToClipBoard}>Copy to clipboard</button>
+			<button class="buttonClass1" on:click={() => ($isMapModalOpen = false)}>Return</button>
+		</footer>
+	</div>
+</Modal>
 
 <style>
-	dialog {
-		border-radius: 20px;
-		border: 0;
-		height: 400px;
-		width: 700px;
-		padding: 0;
+	.container {
 		display: flex;
 		flex-direction: column;
-	}
-	dialog::backdrop {
-		background: rgba(0, 0, 0, 0.7);
-		backdrop-filter: blur(10px);
+		height: 400px;
 	}
 	.buttonClass1 {
 		margin-block: 3%;

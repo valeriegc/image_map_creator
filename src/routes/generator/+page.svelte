@@ -1,10 +1,19 @@
 <script lang="ts">
-	import { isMapModalOpen, files } from './stores';
+	import { isMapModalOpen, files, startModalOpen, imageLinkFromUser } from './stores';
 	import MapModal from './MapModal.svelte';
 	import Toolbar from './Toolbar.svelte';
 	import Canvas from './Canvas.svelte';
-	import PlaceHolder from './Placeholder.svelte';
+	import { onMount } from 'svelte';
+	import StartModal from './StartModal.svelte';
+
+	onMount(() => {
+		$startModalOpen = true;
+	});
 </script>
+
+{#if $startModalOpen && ($files == null || $imageLinkFromUser == null)}
+	<StartModal />
+{/if}
 
 {#if $isMapModalOpen}
 	<MapModal />
@@ -12,9 +21,6 @@
 
 <div class="pageWrapper">
 	<Toolbar />
-	{#if !$files}
-		<PlaceHolder />
-	{/if}
 	<Canvas />
 </div>
 
