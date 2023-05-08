@@ -3,7 +3,7 @@
 	import { startModalOpen, files, imageLinkFromUser } from './stores';
 </script>
 
-<Modal open={true}>
+<Modal>
 	<div class="container">
 		<div class="existingMaps">
 			<h3>View your existing maps</h3>

@@ -1,16 +1,10 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	let mounted = false;
-	onMount(() => {
-		mounted = true;
-	});
 	let dialog: HTMLDialogElement;
-	export let open: boolean;
-
-	$: if (open && mounted) {
+	onMount(() => {
 		dialog.showModal();
-	}
+	});
 </script>
 
 <dialog bind:this={dialog}>

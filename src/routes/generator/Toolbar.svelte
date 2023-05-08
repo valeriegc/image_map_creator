@@ -1,11 +1,22 @@
 <script lang="ts">
 	import { isMapModalOpen, userProvidedLink } from './stores';
-	let nameOfMap = 'Name of map here';
+	let nameOfMap = '';
 </script>
 
 <div class="buttonContainer">
-	<input type="text" class="mapNameInput" value={nameOfMap} />
-	<input type="text" class="mapNameInput" style="top:70px;" bind:value={$userProvidedLink} />
+	<input
+		type="text"
+		class="mapNameInput"
+		value={nameOfMap}
+		placeholder="Please provide a name for your map"
+	/>
+	<input
+		type="text"
+		class="mapNameInput"
+		style="top:70px;"
+		bind:value={$userProvidedLink}
+		placeholder="Please provide a link to your image"
+	/>
 	<div class="shapeBox">Shapes here</div>
 	<button class="generateButton" style="right:460px;">Save to maps</button>
 	<button class="generateButton" style="right:330px;">Restart</button>
