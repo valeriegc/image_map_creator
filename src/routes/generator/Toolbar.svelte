@@ -100,7 +100,6 @@
 		padding: 5px;
 		margin-top: 1%;
 		cursor: pointer;
-		border: 2px solid white;
 	}
 	.saveButton :hover {
 		background-color: white;
@@ -159,7 +158,6 @@
 		border: 0;
 		padding: 0;
 		margin-top: 1%;
-		border: 2px solid white;
 	}
 	::placeholder {
 		color: var(--lightbeige);
