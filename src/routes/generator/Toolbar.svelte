@@ -1,51 +1,121 @@
 <script lang="ts">
 	import { isMapModalOpen, userProvidedLink } from './stores';
+	import Save from '../../icons/Save.svg';
+	import Redo from '../../icons/Redo.svg';
 	let nameOfMap = '';
 </script>
 
 <div class="buttonContainer">
-	<input
-		type="text"
-		class="mapNameInput"
-		value={nameOfMap}
-		placeholder="Please provide a name for your map"
-	/>
-	<input
-		type="text"
-		class="mapNameInput"
-		style="top:70px;"
-		bind:value={$userProvidedLink}
-		placeholder="Please provide a link to your image"
-	/>
-	<div class="shapeBox">Shapes here</div>
-	<button class="generateButton" style="right:460px;">Save to maps</button>
-	<button class="generateButton" style="right:330px;">Restart</button>
-	<button class="generateButton" on:click={() => ($isMapModalOpen = true)}>Generate map</button>
-	<div class="userProfile">
-		<div class="userProfileHead" />
-		<div class="userProfileBody" />
+	<div class="inputWrap">
+		<p style="position:absolute;color:white;left:590px;top:5%;font-weight:bold;">Shapes</p>
+		<label style="color:white; font-size:0.9rem">Name of the map:</label>
+		<input
+			type="text"
+			class="mapNameInput"
+			value={nameOfMap}
+			placeholder="Provide a name for the map"
+		/>
+		<label style="color:white;font-size:0.9rem">Link to original image:</label>
+		<input
+			type="text"
+			class="mapNameInput"
+			bind:value={$userProvidedLink}
+			placeholder="Provide a link to the original image"
+		/>
+	</div>
+	<div class="shapeBox">
+		<div class="saveButton" style="background-color:transparent">
+			<div class="rectShape" />
+		</div>
+		<div class="saveButton" style="background-color:transparent">
+			<div class="rectShape" style="border-radius:100%" />
+		</div>
+	</div>
+	<div class="buttonBox">
+		<div class="saveButton">
+			<img src={Save} />
+		</div>
+		<div class="saveButton" style="padding:3%">
+			<img src={Redo} />
+		</div>
+		<button class="generateButton" on:click={() => ($isMapModalOpen = true)}>Generate</button>
+		<div class="userProfile">
+			<div class="userProfileHead" />
+			<div class="userProfileBody" />
+		</div>
 	</div>
 </div>
 
 <style>
-	.shapeBox {
-		height: 70px;
-		width: 320px;
-		border-radius: 20px;
-		position: absolute;
-		top: 10px;
-		color: white;
-		padding: 10px;
-		left: 320px;
+	.buttonContainer {
+		display: flex;
+		align-items: center;
+		flex-direction: row;
+		background-color: var(--navyblue);
+		border: var(--lightbeige) solid 1px;
+		height: 140px;
+		border-radius: 40px;
+		margin-left: 100px;
+		margin-right: 100px;
+	}
+	.buttonBox {
+		width: 400px;
+		display: flex;
+		flex-direction: row;
+		gap: 10%;
+		height: 50%;
+		justify-self: flex-end;
+		margin-left: 10%;
+	}
+	.rectShape {
+		height: 30px;
+		width: 30px;
+		border: solid white 2px;
+		margin-top: 25%;
+		margin-left: 25%;
+		background-color: var(--lightrose);
+	}
+	.inputWrap {
+		height: 100%;
+		margin-left: 5%;
+		width: 20%;
+		display: flex;
+		flex-direction: column;
+		padding: 0.6%;
 	}
 	.mapNameInput {
-		height: 30px;
+		height: 25px;
 		width: 230px;
-		position: absolute;
-		left: 50px;
-		border: white 1px dashed;
+		border: white 1px dotted;
 		color: white;
 		background-color: transparent;
+		margin-top: 2%;
+		margin-bottom: 1.5%;
+	}
+	.saveButton {
+		background-image: radial-gradient(var(--navyblue), var(--lightrose));
+		height: 70px;
+		width: 70px;
+		border-radius: 20px;
+		padding: 5px;
+		margin-top: 1%;
+		cursor: pointer;
+		border: 2px solid white;
+	}
+	.saveButton :hover {
+		background-color: white;
+		transition: 0.7s;
+	}
+	.shapeBox {
+		height: 90%;
+		width: 400px;
+		border-radius: 20px;
+		color: white;
+		padding: 10px;
+		display: flex;
+		flex-direction: row;
+		gap: 10%;
+		padding-top: 2%;
 	}
 	.userProfileBody {
 		height: 80px;
@@ -72,29 +142,26 @@
 		width: 80px;
 		border: solid white 3px;
 		border-radius: 100%;
-		background-color: darkblue;
-		margin-right: 5%;
+		background-color: var(--lightrose);
+		margin-right: 10%;
 		position: absolute;
-		right: 1%;
-		top: 15%;
+		right: 0.5%;
+		top: 8%;
+		cursor: pointer;
 	}
 	.generateButton {
-		height: 40px;
-		width: 100px;
-		padding: 0;
+		background-image: radial-gradient(var(--navyblue), var(--lightrose));
+		height: 60px;
+		width: 120px;
+		font-size: 1rem;
 		font-weight: bold;
-		position: absolute;
-		right: 200px;
-		top: 40px;
+		color: white;
+		border: 0;
+		padding: 0;
+		margin-top: 1%;
+		border: 2px solid white;
 	}
-	.buttonContainer {
-		display: flex;
-		justify-content: center;
-		background-color: #000099;
-		padding-top: 20px;
-		height: 100px;
-		margin: 2% 2% 0 2%;
-		border-radius: 40px;
-		position: relative;
+	::placeholder {
+		color: var(--lightbeige);
 	}
 </style>

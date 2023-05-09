@@ -68,8 +68,8 @@
 	.areaRect {
 		z-index: 1;
 		position: absolute;
-		border: darkblue solid 1px;
-		background-color: RGBA(0, 0, 139, 0.1);
+		border: var(--navyblue) solid 1px;
+		background-color: RGBA(19, 19, 23, 0.4);
 		cursor: pointer;
 		display: flex;
 	}
@@ -84,13 +84,6 @@
 		border-radius: 100%;
 		border: solid 2px darkblue;
 		background-color: whitesmoke;
-	}
-
-	.inputWrap {
-		margin-top: 30px;
-		color: darkblue;
-		font-size: 15px;
-		font-weight: bold;
 	}
 	.completeWrap {
 		display: flex;
@@ -113,7 +106,7 @@
 		font-size: 10px;
 	}
 	img {
-		border: solid darkblue 5px;
+		border: solid var(--navyblue) 5px;
 	}
 	.remove {
 		background-color: transparent;

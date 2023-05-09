@@ -25,5 +25,10 @@
 </div>
 
 <style>
-	/* make header div that will be full width by itself and make that a flex box */
+	.pageWrapper {
+		background-image: linear-gradient(var(--lightrose), var(--navyblue));
+		margin: 0;
+		height: 100vh;
+		padding: 3%;
+	}
 </style>
