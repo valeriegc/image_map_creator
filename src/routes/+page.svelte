@@ -5,9 +5,7 @@
 
 <main>
 	<div class="upperHalf" />
-	<header>
-		<h1>IMAGE MAP</h1>
-	</header>
+	<h1>IMAGE MAP</h1>
 	<form method="POST">
 		<h2>USER LOGIN</h2>
 		<label>
@@ -31,26 +29,31 @@
 </main>
 
 <style>
+	* {
+		box-sizing: content-box;
+	}
 	main {
 		height: 100vh;
 		display: flex;
 		flex-direction: column;
+		background-image: linear-gradient(var(--navyblue), var(--lightbeige));
 	}
 	.upperHalf {
-		z-index: -1;
 		height: 60vh;
-		background-color: var(--lightrose);
+		background-image: linear-gradient(var(--lightrose), var(--navyblue));
 		position: absolute;
 		width: 100%;
 	}
 	h1 {
 		padding-top: 50px;
 		font-size: 6rem;
-		color: var(--navyblue);
+		color: white;
 		height: 100px;
 		text-align: center;
 		margin: 0;
 		letter-spacing: 1.5rem;
+		z-index: 2;
+		margin-top: 3%;
 	}
 	form {
 		display: flex;
@@ -60,10 +63,12 @@
 		width: 500px;
 		align-items: center;
 		border-radius: 20px;
-		background-color: #000099;
+		background-color: var(--navyblue);
 		color: whitesmoke;
 		gap: 40px;
 		margin: auto;
+		z-index: 1;
+		margin-top: 6%;
 	}
 	h2 {
 		font-weight: 900;
@@ -82,7 +87,7 @@
 		padding: 10px;
 	}
 	input::placeholder {
-		color: #000099;
+		color: var(--navyblue);
 		text-align: center;
 	}
 
@@ -98,7 +103,7 @@
 	}
 	.loginButton {
 		height: 60px;
-		width: 295px;
+		width: 240px;
 		background-color: white;
 		color: var(--navyblue);
 		font-weight: bold;
