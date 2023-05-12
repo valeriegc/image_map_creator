@@ -5,9 +5,9 @@
 	let nameOfMap = '';
 </script>
 
-<div class="buttonContainer">
+<div class="toolbar">
 	<div class="inputWrap">
-		<p style="position:absolute;color:white;left:590px;top:5%;font-weight:bold;">Shapes</p>
+		<p>Shapes</p>
 		<label style="color:white; font-size:0.9rem">Name of the map:</label>
 		<input
 			type="text"
@@ -24,20 +24,20 @@
 		/>
 	</div>
 	<div class="shapeBox">
-		<div class="saveButton" style="background-color:transparent">
+		<button class="toolbarButton" id="shapeConvert" style="background-color:transparent">
 			<div class="rectShape" />
-		</div>
-		<div class="saveButton" style="background-color:transparent">
+		</button>
+		<button class="toolbarButton" id="shapeConvert" style="background-color:transparent">
 			<div class="rectShape" style="border-radius:100%" />
-		</div>
+		</button>
 	</div>
 	<div class="buttonBox">
-		<div class="saveButton">
+		<button class="toolbarButton" style="padding: 3%;margin-right:10%">
 			<img src={Save} />
-		</div>
-		<div class="saveButton" style="padding:3%">
+		</button>
+		<button class="toolbarButton" style="padding:3%;margin-right:10%">
 			<img src={Redo} />
-		</div>
+		</button>
 		<button class="generateButton" on:click={() => ($isMapModalOpen = true)}>Generate</button>
 		<div class="userProfile">
 			<div class="userProfileHead" />
@@ -47,33 +47,41 @@
 </div>
 
 <style>
-	.buttonContainer {
+	p {
+		position: absolute;
+		color: white;
+		left: 590px;
+		top: 5%;
+		font-weight: bold;
+	}
+	.toolbar {
 		display: flex;
 		align-items: center;
 		flex-direction: row;
 		background-color: var(--navyblue);
 		border: var(--lightbeige) solid 1px;
-		height: 140px;
 		border-radius: 40px;
-		margin-left: 100px;
-		margin-right: 100px;
+		width: min(90%, 2000px);
+		margin: auto;
 	}
 	.buttonBox {
-		width: 400px;
 		display: flex;
 		flex-direction: row;
-		gap: 10%;
 		height: 50%;
 		justify-self: flex-end;
 		margin-left: 10%;
+		padding-top: 2%;
+		padding-bottom: 2%;
+		padding-left: 5%;
+		padding-right: 5%;
+		border: red solid 2px;
 	}
 	.rectShape {
 		height: 30px;
 		width: 30px;
 		border: solid white 2px;
-		margin-top: 25%;
-		margin-left: 25%;
 		background-color: var(--lightrose);
+		margin: auto;
 	}
 	.inputWrap {
 		height: 100%;
@@ -92,7 +100,7 @@
 		margin-top: 2%;
 		margin-bottom: 1.5%;
 	}
-	.saveButton {
+	.toolbarButton {
 		background-image: radial-gradient(var(--navyblue), var(--lightrose));
 		height: 70px;
 		width: 70px;
@@ -101,7 +109,7 @@
 		margin-top: 1%;
 		cursor: pointer;
 	}
-	.saveButton :hover {
+	#shapeConvert :hover {
 		background-color: white;
 		transition: 0.7s;
 	}
