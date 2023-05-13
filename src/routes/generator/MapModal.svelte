@@ -7,7 +7,6 @@
 	let imagemap = `<img src = "${$userProvidedLink}" alt="" usemap="">
     <map name="">`;
 	onMount(() => {
-		open = true;
 		for (let i = 0; i < $mapObjects.length; i++) {
 			imagemap =
 				imagemap +
@@ -23,7 +22,7 @@
 	}
 </script>
 
-<Modal {open}>
+<Modal>
 	<div class="container">
 		<div class="map">{imagemap}</div>
 		<footer>
@@ -38,6 +37,7 @@
 		display: flex;
 		flex-direction: column;
 		height: 400px;
+		color: black;
 	}
 	.buttonClass1 {
 		margin-block: 3%;

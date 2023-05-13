@@ -7,18 +7,21 @@ body {
 * {
 	font-family: 'Muli';
 	user-select: none;
+	box-sizing: border-box;
+	color: white;
 }
 
 button {
 	background-color: transparent;
-	color: whitesmoke;
-	border: solid 1px whitesmoke;
+	color: white;
+	border: solid 1px white;
 	border-radius: 10px;
 	cursor: pointer;
 	padding-inline: 30px;
 }
 :root {
-	--navyblue: #000099;
-	--lightrose: #b49fcc;
-	--lightbeige: #ead7d7;
+	--navyblue: rgb(19, 19, 23);
+	--lightrose: #4a4e58;
+	--lightbeige: rgb(201, 203, 204);
+	--taupe: #453f3c;
 }

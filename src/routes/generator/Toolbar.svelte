@@ -1,26 +1,46 @@
 <script lang="ts">
 	import { isMapModalOpen, userProvidedLink } from './stores';
+	import Save from '../../icons/Save.svg';
+	import Redo from '../../icons/Redo.svg';
 	let nameOfMap = '';
 </script>
 
-<div class="buttonContainer">
-	<input
-		type="text"
-		class="mapNameInput"
-		value={nameOfMap}
-		placeholder="Please provide a name for your map"
-	/>
-	<input
-		type="text"
-		class="mapNameInput"
-		style="top:70px;"
-		bind:value={$userProvidedLink}
-		placeholder="Please provide a link to your image"
-	/>
-	<div class="shapeBox">Shapes here</div>
-	<button class="generateButton" style="right:460px;">Save to maps</button>
-	<button class="generateButton" style="right:330px;">Restart</button>
-	<button class="generateButton" on:click={() => ($isMapModalOpen = true)}>Generate map</button>
+<div class="toolbar">
+	<div class="inputWrap">
+		<label>Name of the map:</label>
+		<input type="text" class="input" value={nameOfMap} placeholder="Provide a name for the map" />
+		<label style=" margin-top:10px">Link to original image:</label>
+		<input
+			type="text"
+			class="input"
+			bind:value={$userProvidedLink}
+			placeholder="Provide a link to the original image"
+		/>
+	</div>
+	<div>
+		<div class="shapesContainer">
+			<button class="toolbarButton" type="button">
+				<div class="shape" />
+			</button>
+			<button class="toolbarButton" type="button">
+				<div class="shape" style="border-radius:100%" />
+			</button>
+		</div>
+	</div>
+	<div class="buttonBox">
+		<button class="toolbarButton" style="padding: 3%" type="button">
+			<img src={Save} />
+		</button>
+		<button class="toolbarButton" style="padding:3%" type="button">
+			<img src={Redo} />
+		</button>
+		<button
+			class="toolbarButton"
+			id="generateButton"
+			on:click={() => ($isMapModalOpen = true)}
+			type="button">Generate</button
+		>
+	</div>
 	<div class="userProfile">
 		<div class="userProfileHead" />
 		<div class="userProfileBody" />
@@ -28,24 +48,68 @@
 </div>
 
 <style>
-	.shapeBox {
-		height: 70px;
-		width: 320px;
-		border-radius: 20px;
-		position: absolute;
-		top: 10px;
-		color: white;
-		padding: 10px;
-		left: 320px;
+	.toolbar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		background-color: var(--navyblue);
+		border: var(--lightbeige) solid 1px;
+		border-radius: 40px;
+		width: min(90%, 2000px);
+		margin: auto;
+		padding: 20px;
+		padding-inline: 80px;
 	}
-	.mapNameInput {
-		height: 30px;
+	.inputWrap {
+		display: flex;
+		flex-direction: column;
+	}
+	.input {
+		height: 25px;
 		width: 230px;
-		position: absolute;
-		left: 50px;
-		border: white 1px dashed;
-		color: white;
+		border: white 1px dotted;
 		background-color: transparent;
+	}
+	input::placeholder {
+		color: var(--lightbeige);
+	}
+	label {
+		font-size: 0.9rem;
+		color: white;
+		margin-bottom: 5px;
+	}
+	.shapesContainer {
+		display: flex;
+		gap: 20px;
+	}
+	.shape {
+		height: 30px;
+		width: 30px;
+		border: solid white 2px;
+		background-color: var(--lightrose);
+		margin: auto;
+	}
+	.shape:hover {
+		background-color: white;
+		transition: 0.6s;
+	}
+	.buttonBox {
+		display: flex;
+		gap: 20px;
+	}
+	.toolbarButton {
+		background-image: radial-gradient(var(--navyblue), var(--lightrose));
+		height: 70px;
+		width: 70px;
+		border-radius: 20px;
+		padding: 5px;
+		cursor: pointer;
+		border: white 1px solid;
+	}
+	#generateButton {
+		width: 120px;
+		font-size: 1rem;
+		font-weight: bold;
 	}
 	.userProfileBody {
 		height: 80px;
@@ -67,34 +131,13 @@
 	}
 	.userProfile {
 		overflow: hidden;
-		align-self: flex-end;
 		height: 80px;
 		width: 80px;
 		border: solid white 3px;
 		border-radius: 100%;
-		background-color: darkblue;
-		margin-right: 5%;
-		position: absolute;
-		right: 1%;
-		top: 15%;
-	}
-	.generateButton {
-		height: 40px;
-		width: 100px;
-		padding: 0;
-		font-weight: bold;
-		position: absolute;
-		right: 200px;
-		top: 40px;
-	}
-	.buttonContainer {
-		display: flex;
-		justify-content: center;
-		background-color: #000099;
-		padding-top: 20px;
-		height: 100px;
-		margin: 2% 2% 0 2%;
-		border-radius: 40px;
+		background-image: radial-gradient(var(--navyblue), var(--lightrose));
+		cursor: pointer;
 		position: relative;
+		flex-shrink: 0;
 	}
 </style>
