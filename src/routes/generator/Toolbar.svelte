@@ -7,98 +7,95 @@
 
 <div class="toolbar">
 	<div class="inputWrap">
-		<p>Shapes</p>
-		<label style="color:white; font-size:0.9rem">Name of the map:</label>
+		<label>Name of the map:</label>
+		<input type="text" class="input" value={nameOfMap} placeholder="Provide a name for the map" />
+		<label style=" margin-top:10px">Link to original image:</label>
 		<input
 			type="text"
-			class="mapNameInput"
-			value={nameOfMap}
-			placeholder="Provide a name for the map"
-		/>
-		<label style="color:white;font-size:0.9rem">Link to original image:</label>
-		<input
-			type="text"
-			class="mapNameInput"
+			class="input"
 			bind:value={$userProvidedLink}
 			placeholder="Provide a link to the original image"
 		/>
 	</div>
-	<div class="shapeBox">
-		<button class="toolbarButton" id="shapeConvert" style="background-color:transparent">
-			<div class="rectShape" />
-		</button>
-		<button class="toolbarButton" id="shapeConvert" style="background-color:transparent">
-			<div class="rectShape" style="border-radius:100%" />
-		</button>
+	<div>
+		<div class="shapesContainer">
+			<button class="toolbarButton" type="button">
+				<div class="shape" />
+			</button>
+			<button class="toolbarButton" type="button">
+				<div class="shape" style="border-radius:100%" />
+			</button>
+		</div>
 	</div>
 	<div class="buttonBox">
-		<button class="toolbarButton" style="padding: 3%;margin-right:10%">
+		<button class="toolbarButton" style="padding: 3%" type="button">
 			<img src={Save} />
 		</button>
-		<button class="toolbarButton" style="padding:3%;margin-right:10%">
+		<button class="toolbarButton" style="padding:3%" type="button">
 			<img src={Redo} />
 		</button>
-		<button class="generateButton" on:click={() => ($isMapModalOpen = true)}>Generate</button>
-		<div class="userProfile">
-			<div class="userProfileHead" />
-			<div class="userProfileBody" />
-		</div>
+		<button
+			class="toolbarButton"
+			id="generateButton"
+			on:click={() => ($isMapModalOpen = true)}
+			type="button">Generate</button
+		>
+	</div>
+	<div class="userProfile">
+		<div class="userProfileHead" />
+		<div class="userProfileBody" />
 	</div>
 </div>
 
 <style>
-	p {
-		position: absolute;
-		color: white;
-		left: 590px;
-		top: 5%;
-		font-weight: bold;
-	}
 	.toolbar {
 		display: flex;
 		align-items: center;
-		flex-direction: row;
+		justify-content: space-between;
 		background-color: var(--navyblue);
 		border: var(--lightbeige) solid 1px;
 		border-radius: 40px;
 		width: min(90%, 2000px);
 		margin: auto;
+		padding: 20px;
+		padding-inline: 80px;
 	}
-	.buttonBox {
+	.inputWrap {
 		display: flex;
-		flex-direction: row;
-		height: 50%;
-		justify-self: flex-end;
-		margin-left: 10%;
-		padding-top: 2%;
-		padding-bottom: 2%;
-		padding-left: 5%;
-		padding-right: 5%;
-		border: red solid 2px;
+		flex-direction: column;
 	}
-	.rectShape {
+	.input {
+		height: 25px;
+		width: 230px;
+		border: white 1px dotted;
+		background-color: transparent;
+	}
+	input::placeholder {
+		color: var(--lightbeige);
+	}
+	label {
+		font-size: 0.9rem;
+		color: white;
+		margin-bottom: 5px;
+	}
+	.shapesContainer {
+		display: flex;
+		gap: 20px;
+	}
+	.shape {
 		height: 30px;
 		width: 30px;
 		border: solid white 2px;
 		background-color: var(--lightrose);
 		margin: auto;
 	}
-	.inputWrap {
-		height: 100%;
-		margin-left: 5%;
-		width: 20%;
-		display: flex;
-		flex-direction: column;
-		padding: 0.6%;
+	.shape:hover {
+		background-color: white;
+		transition: 0.6s;
 	}
-	.mapNameInput {
-		height: 25px;
-		width: 230px;
-		border: white 1px dotted;
-		color: white;
-		background-color: transparent;
-		margin-top: 2%;
-		margin-bottom: 1.5%;
+	.buttonBox {
+		display: flex;
+		gap: 20px;
 	}
 	.toolbarButton {
 		background-image: radial-gradient(var(--navyblue), var(--lightrose));
@@ -106,23 +103,13 @@
 		width: 70px;
 		border-radius: 20px;
 		padding: 5px;
-		margin-top: 1%;
 		cursor: pointer;
+		border: white 1px solid;
 	}
-	#shapeConvert :hover {
-		background-color: white;
-		transition: 0.7s;
-	}
-	.shapeBox {
-		height: 90%;
-		width: 400px;
-		border-radius: 20px;
-		color: white;
-		padding: 10px;
-		display: flex;
-		flex-direction: row;
-		gap: 10%;
-		padding-top: 2%;
+	#generateButton {
+		width: 120px;
+		font-size: 1rem;
+		font-weight: bold;
 	}
 	.userProfileBody {
 		height: 80px;
@@ -144,30 +131,13 @@
 	}
 	.userProfile {
 		overflow: hidden;
-		align-self: flex-end;
 		height: 80px;
 		width: 80px;
 		border: solid white 3px;
 		border-radius: 100%;
-		background-color: var(--lightrose);
-		margin-right: 10%;
-		position: absolute;
-		right: 0.5%;
-		top: 8%;
-		cursor: pointer;
-	}
-	.generateButton {
 		background-image: radial-gradient(var(--navyblue), var(--lightrose));
-		height: 60px;
-		width: 120px;
-		font-size: 1rem;
-		font-weight: bold;
-		color: white;
-		border: 0;
-		padding: 0;
-		margin-top: 1%;
-	}
-	::placeholder {
-		color: var(--lightbeige);
+		cursor: pointer;
+		position: relative;
+		flex-shrink: 0;
 	}
 </style>
