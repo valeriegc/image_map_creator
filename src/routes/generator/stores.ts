@@ -5,6 +5,7 @@ export interface MapObject {
 	link: string;
 	width: number;
 	height: number;
+	type: string;
 }
 export const isMapModalOpen = writable(false);
 export const startModalOpen = writable(false);
@@ -13,3 +14,4 @@ export const mapObjects = writable<MapObject[]>([]);
 export const userProvidedLink = writable('');
 export const imageLinkFromUser = writable('');
 export const isResizeOn = writable(false);
+export const shapeType = writable('rect');

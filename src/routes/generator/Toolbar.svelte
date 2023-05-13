@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { isMapModalOpen, userProvidedLink } from './stores';
+	import { isMapModalOpen, userProvidedLink, shapeType } from './stores';
 	import Save from '../../icons/Save.svg';
 	import Redo from '../../icons/Redo.svg';
 	let nameOfMap = '';
@@ -19,11 +19,14 @@
 	</div>
 	<div>
 		<div class="shapesContainer">
-			<button class="toolbarButton" type="button">
-				<div class="shape" />
+			<button class="toolbarButton" type="button" on:click={() => ($shapeType = 'rect')}>
+				<div class="shape" style="border-color:{$shapeType == 'rect' ? 'black' : 'white'}" />
 			</button>
-			<button class="toolbarButton" type="button">
-				<div class="shape" style="border-radius:100%" />
+			<button class="toolbarButton" type="button" on:click={() => ($shapeType = 'circ')}>
+				<div
+					class="shape"
+					style="border-radius:100%;border-color:{$shapeType == 'circ' ? 'black' : 'white'}"
+				/>
 			</button>
 		</div>
 	</div>
