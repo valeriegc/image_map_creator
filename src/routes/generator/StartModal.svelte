@@ -6,76 +6,83 @@
 <Modal>
 	<div class="container">
 		<div class="existingMaps">
-			<h3>View your existing maps</h3>
+			<p style="font-size:25px;">Choose from your saved maps</p>
+			<p>No maps available.</p>
 		</div>
 		<div class="createNew">
-			<h3>Create from scratch</h3>
-			<div class="buttonContainer">
-				<input type="file" bind:files={$files} />
-			</div>
-			OR
-			<label style="margin-top:7%;font-weight:bold"
-				>Input a link
-				<input type="text" bind:value={$imageLinkFromUser} style="margin-top:1%" />
-				{#if $imageLinkFromUser !== null}
-					<button
-						on:click={() => ($startModalOpen = false)}
-						style="background-color:darkblue; width:40px; padding:0">Start</button
-					>
-				{/if}
+			<p style="font-size:25px;">Create from scratch</p>
+			<input type="file" bind:files={$files} />
+			<p>OR</p>
+			<label style="color:var(--navyblue); align-self:center;"
+				>Input a link:
+				<input type="text" bind:value={$imageLinkFromUser} style="margin-left:10px;" />
 			</label>
+			<button
+				style={$imageLinkFromUser !== ''
+					? 'background-image: radial-gradient(var(--navyblue), var(--lightrose))'
+					: 'background-color:var(--lightbeige)'}
+				on:click={() =>
+					$imageLinkFromUser !== '' ? ($startModalOpen = false) : ($startModalOpen = true)}
+				>Start</button
+			>
 		</div>
 	</div>
 </Modal>
 
 <style>
-	button {
-		background-color: transparent;
-	}
 	.container {
-		margin: 5%;
 		display: flex;
-		flex-direction: row;
 		position: relative;
+		border-radius: 20px;
+		height: 500px;
 	}
 	.existingMaps {
 		width: 50%;
-		margin-right: 5px;
-		height: 270px;
-		border-radius: 10%;
-		display: flex;
-		flex-direction: column;
-		padding: 5%;
-		border: solid lightgrey 2px;
-	}
-	.createNew {
-		border-radius: 10%;
-		margin-left: 5px;
-		width: 50%;
-		height: 270px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 10%;
-		padding: 5%;
-		border: solid rgb(177, 177, 229) 2px;
+		background-image: linear-gradient(var(--lightbeige), white);
+	}
+	.createNew {
+		width: 50%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+		padding-bottom: 50px;
+	}
+	p {
+		color: var(--navyblue);
+	}
+	input {
+		color: var(--navyblue);
+		border: var(--navyblue) solid 1px;
+		border-radius: 10px;
+		height: 25px;
+		width: 200px;
 	}
 	input[type='file'] {
+		margin-top: -3%;
 		width: 250px;
-		height: 30px;
-		color: whitesmoke;
+		height: 40px;
 		padding: 5px;
-		background: #000099;
+		color: white;
 		border-radius: 10px;
-		border: solid whitesmoke 1px;
+		border: solid white 1px;
+		background-image: radial-gradient(var(--navyblue), var(--lightrose));
 	}
 	input[type='file']::file-selector-button {
 		margin-right: 20px;
 		background: whitesmoke;
 		padding: 6px 20px;
 		border-radius: 10px;
-		color: #000099;
+		color: var(--navyblue);
 		cursor: pointer;
-		border: solid whitesmoke 1px;
+	}
+	button {
+		height: 30px;
+		font-size: 1rem;
+		border-radius: 10px;
+		border: solid white 1px;
 	}
 </style>
