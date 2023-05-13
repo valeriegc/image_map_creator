@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { resizeArea } from '../../actions/Resize';
-	import { files, imageLinkFromUser, mapObjects, userProvidedLink } from './stores';
+	import { files, imageLinkFromUser, mapObjects, userProvidedLink, isResizeOn } from './stores';
 
 	let svgMoving = false;
 
@@ -10,16 +10,18 @@
 	}
 
 	function addArea(event: MouseEvent) {
-		$mapObjects.push({ x: event.offsetX, y: event.offsetY, link: '', heigth: 50, width: 200 });
+		$mapObjects.push({ x: event.offsetX, y: event.offsetY, link: '', height: 100, width: 300 });
 		$mapObjects = $mapObjects;
 	}
 
 	function svgMoveStart() {
-		svgMoving = true;
+		if (!$isResizeOn) {
+			svgMoving = true;
+		}
 	}
 
 	function svgMoveExecute(event: MouseEvent, i: number) {
-		if (svgMoving) {
+		if (svgMoving && !$isResizeOn) {
 			$mapObjects[i].x += event.movementX;
 			$mapObjects[i].y += event.movementY;
 			$mapObjects = $mapObjects;
@@ -35,19 +37,19 @@
 	<div class="completeWrap">
 		<div class="imageCanvasWrap" on:mousedown={addArea} on:mouseup={svgMoveEnd}>
 			<img src={$files !== null ? URL.createObjectURL($files[0]) : $imageLinkFromUser} />
-			{#each $mapObjects as _, i}
+			{#each $mapObjects as mapObject, i}
 				<div
 					class="areaRect"
-					use:resizeArea
+					use:resizeArea={{ mapObject, isResizeOn }}
 					on:mousedown|stopPropagation={svgMoveStart}
-					on:mousemove|stopPropagation={(e) => svgMoveExecute(e, i)}
-					style="height:{$mapObjects[i].heigth}px; width:{$mapObjects[i].width}px;top: {$mapObjects[
+					on:mousemove={(e) => svgMoveExecute(e, i)}
+					style="height:{$mapObjects[i].height}px; width:{$mapObjects[i].width}px;top: {$mapObjects[
 						i
 					].y}px; left: {$mapObjects[i].x}px;"
 				>
 					<input
 						class="linkInput"
-						placeholder="submit link here"
+						placeholder="Input link"
 						bind:value={$mapObjects[i].link}
 						type="text"
 					/>
@@ -68,7 +70,7 @@
 	.areaRect {
 		z-index: 1;
 		position: absolute;
-		border: var(--navyblue) solid 1px;
+		border: var(--navyblue) solid 2px;
 		background-color: RGBA(19, 19, 23, 0.4);
 		cursor: pointer;
 		display: flex;
@@ -76,14 +78,14 @@
 	:global(.grabber) {
 		position: absolute;
 		box-sizing: border-box;
-		height: 7px;
-		width: 7px;
+		height: 13px;
+		width: 13px;
 		bottom: -7px;
 		right: -7px;
 		cursor: se-resize;
 		border-radius: 100%;
-		border: solid 2px darkblue;
-		background-color: whitesmoke;
+		border: solid 3px var(--navyblue);
+		background-color: white;
 	}
 	.completeWrap {
 		display: flex;
@@ -98,19 +100,23 @@
 		cursor: crosshair;
 	}
 	.linkInput {
-		background-color: whitesmoke;
-		border: 1px solid darkgrey;
+		background-color: white;
+		margin: 3px;
 		border-radius: 5px;
 		height: 20%;
 		width: 75%;
-		font-size: 10px;
+		font-size: 0.75rem;
+		border: 0;
+	}
+	.linkInput::placeholder {
+		color: var(--navyblue);
 	}
 	img {
 		border: solid var(--navyblue) 5px;
 	}
 	.remove {
 		background-color: transparent;
-		color: darkred;
+		color: red;
 		font-size: 12px;
 		position: absolute;
 		top: -12px;

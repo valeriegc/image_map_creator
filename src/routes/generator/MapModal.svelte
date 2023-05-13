@@ -12,7 +12,7 @@
 				imagemap +
 				` <area shape="rect" coords="${$mapObjects[i].x}, ${$mapObjects[i].y}, ${
 					$mapObjects[i].x + $mapObjects[i].width
-				}, ${$mapObjects[i].y - $mapObjects[i].heigth}" alt="" href="${$mapObjects[i].link}">`;
+				}, ${$mapObjects[i].y - $mapObjects[i].height}" alt="" href="${$mapObjects[i].link}">`;
 		}
 		imagemap = imagemap + `</map>`;
 		return imagemap;
