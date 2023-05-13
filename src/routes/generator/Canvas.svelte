@@ -14,9 +14,9 @@
 			x: event.offsetX,
 			y: event.offsetY,
 			link: '',
-			height: $shapeType.toString() == 'circ' ? 200 : 100,
-			width: $shapeType.toString() == 'circ' ? 200 : 300,
-			type: $shapeType.toString()
+			height: $shapeType == 'circ' ? 200 : 100,
+			width: $shapeType == 'circ' ? 200 : 300,
+			type: $shapeType
 		});
 		$mapObjects = $mapObjects;
 	}
@@ -38,7 +38,6 @@
 	function svgMoveEnd() {
 		svgMoving = false;
 	}
-	console.log($mapObjects);
 </script>
 
 {#if $files?.[0] || $imageLinkFromUser}
