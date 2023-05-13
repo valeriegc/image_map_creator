@@ -7,12 +7,14 @@ body {
 * {
 	font-family: 'Muli';
 	user-select: none;
+	box-sizing: border-box;
+	color: white;
 }
 
 button {
 	background-color: transparent;
-	color: whitesmoke;
-	border: solid 1px whitesmoke;
+	color: white;
+	border: solid 1px white;
 	border-radius: 10px;
 	cursor: pointer;
 	padding-inline: 30px;
