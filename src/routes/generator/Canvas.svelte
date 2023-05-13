@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { resizeArea } from '../../actions/Resize';
-	import { files, imageLinkFromUser, mapObjects, userProvidedLink, isResizeOn } from './stores';
+	import { files, imageLinkFromUser, mapObjects, isResizeOn, shapeType } from './stores';
 
 	let svgMoving = false;
 
@@ -10,7 +10,14 @@
 	}
 
 	function addArea(event: MouseEvent) {
-		$mapObjects.push({ x: event.offsetX, y: event.offsetY, link: '', height: 100, width: 300 });
+		$mapObjects.push({
+			x: event.offsetX,
+			y: event.offsetY,
+			link: '',
+			height: $shapeType.toString() == 'circ' ? 200 : 100,
+			width: $shapeType.toString() == 'circ' ? 200 : 300,
+			type: $shapeType.toString()
+		});
 		$mapObjects = $mapObjects;
 	}
 
@@ -31,6 +38,7 @@
 	function svgMoveEnd() {
 		svgMoving = false;
 	}
+	console.log($mapObjects);
 </script>
 
 {#if $files?.[0] || $imageLinkFromUser}
@@ -45,7 +53,9 @@
 					on:mousemove={(e) => svgMoveExecute(e, i)}
 					style="height:{$mapObjects[i].height}px; width:{$mapObjects[i].width}px;top: {$mapObjects[
 						i
-					].y}px; left: {$mapObjects[i].x}px;"
+					].y}px; left: {$mapObjects[i].x}px;border-radius:{$mapObjects[i].type == 'rect'
+						? '0%'
+						: '100%'};"
 				>
 					<input
 						class="linkInput"
@@ -101,12 +111,14 @@
 	}
 	.linkInput {
 		background-color: white;
-		margin: 3px;
+		margin-top: 30px;
+		margin-left: 20px;
 		border-radius: 5px;
 		height: 20%;
 		width: 75%;
 		font-size: 0.75rem;
 		border: 0;
+		color: var(--navyblue);
 	}
 	.linkInput::placeholder {
 		color: var(--navyblue);
