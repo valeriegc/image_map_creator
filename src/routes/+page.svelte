@@ -14,7 +14,7 @@
 			</div>
 			<input name="email" type="email" placeholder="Username" />
 		</label>
-		<label>
+		<label style="margin-top:-20px;">
 			<input name="password" type="password" placeholder="Password" />
 			<div class="lockContainer">
 				<Lock />
@@ -107,7 +107,7 @@
 		background-color: white;
 		color: var(--navyblue);
 		font-weight: bold;
-		font-size: 1rem;
+		font-size: 1.5rem;
 	}
 
 	p {
