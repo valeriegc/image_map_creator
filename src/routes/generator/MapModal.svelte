@@ -1,10 +1,9 @@
 <script lang="ts">
 	import Modal from '$lib/Modal.svelte';
-	import ToastMessage from '$lib/ToastMessage.svelte';
-	import { isMapModalOpen, mapObjects, userProvidedLink, isMapCopied } from './stores';
+	import { isMapModalOpen, mapObjects, userProvidedLink } from './stores';
 	import { onMount } from 'svelte';
-	let open = false;
 
+	let isMapCopied = false;
 	let imagemap = `<img src = "${$userProvidedLink}" alt="" usemap="">
 <map name="">
 `;
@@ -22,13 +21,13 @@
 	});
 
 	function toastMessageHider() {
-		if ($isMapCopied) {
-			setTimeout(() => ($isMapCopied = false), 3000);
+		if (isMapCopied) {
+			setTimeout(() => (isMapCopied = false), 3000);
 		}
 	}
 	function copyToClipBoard() {
 		navigator.clipboard.writeText(imagemap);
-		$isMapCopied = true;
+		isMapCopied = true;
 		toastMessageHider();
 	}
 </script>
@@ -41,13 +40,23 @@
 			<button on:click={copyToClipBoard}>Copy to clipboard</button>
 			<button on:click={() => ($isMapModalOpen = false)}>Return</button>
 		</div>
-		{#if $isMapCopied}
-			<ToastMessage />
+		{#if isMapCopied}
+			<p class="toast">Map copied</p>
 		{/if}
 	</div>
 </Modal>
 
 <style>
+	.toast {
+		color: var(--navyblue);
+		background-color: white;
+		position: absolute;
+		top: 30%;
+		z-index: 9999;
+		padding: 25px;
+		border-radius: 10px;
+		border: solid var(--navyblue) 2px;
+	}
 	pre {
 		background-color: var(--navyblue);
 		color: white;

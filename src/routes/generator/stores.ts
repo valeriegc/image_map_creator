@@ -15,4 +15,3 @@ export const userProvidedLink = writable('');
 export const imageLinkFromUser = writable('');
 export const isResizeOn = writable(false);
 export const shapeType = writable('rect');
-export const isMapCopied = writable(false);
