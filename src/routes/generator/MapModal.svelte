@@ -34,31 +34,33 @@
 </script>
 
 <Modal>
-	{#if $isMapCopied}
-		<ToastMessage />
-	{/if}
 	<div class="container">
-		<h3>Copy the code below:</h3>
+		<p>Copy the code below:</p>
 		<pre class="map">{imagemap}</pre>
 		<div class="buttonWrap">
 			<button on:click={copyToClipBoard}>Copy to clipboard</button>
 			<button on:click={() => ($isMapModalOpen = false)}>Return</button>
 		</div>
+		{#if $isMapCopied}
+			<ToastMessage />
+		{/if}
 	</div>
 </Modal>
 
 <style>
-	pre,
-	div,
-	h3 {
-		color: var(--navyblue);
+	pre {
+		background-color: var(--navyblue);
+		color: white;
+		border-radius: 20px;
 	}
 	.container {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		height: 500px;
-		color: black;
+		background-image: linear-gradient(black, var(--lightrose));
+		border: white 1px solid;
+		border-radius: 20px;
 	}
 	.buttonWrap {
 		display: flex;
@@ -67,13 +69,16 @@
 	}
 	button {
 		background-image: radial-gradient(var(--navyblue), var(--lightrose));
-		height: 70px;
-		width: 180px;
+		height: 50px;
+		width: 160px;
 		border-radius: 20px;
 		padding: 3px;
 		font-size: 1rem;
 		cursor: pointer;
 		border: white 1px solid;
+	}
+	button:hover {
+		border: black 2px solid;
 	}
 
 	.map {
