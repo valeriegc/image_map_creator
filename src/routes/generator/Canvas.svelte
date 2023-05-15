@@ -14,8 +14,8 @@
 			x: event.offsetX,
 			y: event.offsetY,
 			link: '',
-			height: $shapeType == 'circ' ? 200 : 100,
-			width: $shapeType == 'circ' ? 200 : 300,
+			height: $shapeType == 'circle' ? 200 : 100,
+			width: $shapeType == 'circle' ? 200 : 300,
 			type: $shapeType
 		});
 		$mapObjects = $mapObjects;

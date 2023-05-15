@@ -22,10 +22,10 @@
 			<button class="toolbarButton" type="button" on:click={() => ($shapeType = 'rect')}>
 				<div class="shape" style="border-color:{$shapeType == 'rect' ? 'black' : 'white'}" />
 			</button>
-			<button class="toolbarButton" type="button" on:click={() => ($shapeType = 'circ')}>
+			<button class="toolbarButton" type="button" on:click={() => ($shapeType = 'circle')}>
 				<div
 					class="shape"
-					style="border-radius:100%;border-color:{$shapeType == 'circ' ? 'black' : 'white'}"
+					style="border-radius:100%;border-color:{$shapeType == 'circle' ? 'black' : 'white'}"
 				/>
 			</button>
 		</div>
@@ -70,8 +70,9 @@
 	.input {
 		height: 25px;
 		width: 230px;
-		border: white 1px dotted;
+		border: var(--lightbeige) 1px solid;
 		background-color: transparent;
+		border-radius: 10px;
 	}
 	input::placeholder {
 		color: var(--lightbeige);
@@ -108,6 +109,9 @@
 		padding: 5px;
 		cursor: pointer;
 		border: white 1px solid;
+	}
+	.toolbarButton:hover {
+		border: black 2px solid;
 	}
 	#generateButton {
 		width: 120px;
