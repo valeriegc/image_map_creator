@@ -21,9 +21,10 @@
 			</div>
 		</label>
 		<button class="loginButton">LOGIN</button>
-		<div>
+		<div style="display:flex; flex-direction:column">
 			<p>Forgot your credentials?</p>
 			<p>Create an account</p>
+			<a href="./generator" style="text-align:center">Continue as guest</a>
 		</div>
 	</form>
 </main>
@@ -116,5 +117,12 @@
 		font-size: 1.5rem;
 		text-align: center;
 		margin-bottom: 10px;
+		cursor: pointer;
+	}
+	p:hover {
+		color: darkgray;
+	}
+	a:hover {
+		color: darkgray;
 	}
 </style>
