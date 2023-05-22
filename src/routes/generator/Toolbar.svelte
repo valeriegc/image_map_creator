@@ -2,6 +2,7 @@
 	import { isMapModalOpen, userProvidedLink, shapeType } from './stores';
 	import Save from '../../icons/Save.svg';
 	import Redo from '../../icons/Redo.svg';
+	import UserIconBig from '../../icons/UserIconBig.svelte';
 	let nameOfMap = '';
 </script>
 
@@ -43,10 +44,7 @@
 			on:click={() => ($isMapModalOpen = true)}
 			type="button">Generate</button
 		>
-	</div>
-	<div class="userProfile">
-		<div class="userProfileHead" />
-		<div class="userProfileBody" />
+		<UserIconBig />
 	</div>
 </div>
 
@@ -117,34 +115,5 @@
 		width: 120px;
 		font-size: 1rem;
 		font-weight: bold;
-	}
-	.userProfileBody {
-		height: 80px;
-		width: 100px;
-		position: absolute;
-		top: 50px;
-		border-radius: 100%;
-		left: -6px;
-		background-color: whitesmoke;
-	}
-	.userProfileHead {
-		height: 35px;
-		width: 35px;
-		background-color: white;
-		border-radius: 100%;
-		position: absolute;
-		right: 22px;
-		top: 13px;
-	}
-	.userProfile {
-		overflow: hidden;
-		height: 80px;
-		width: 80px;
-		border: solid white 3px;
-		border-radius: 100%;
-		background-image: radial-gradient(var(--navyblue), var(--lightrose));
-		cursor: pointer;
-		position: relative;
-		flex-shrink: 0;
 	}
 </style>
