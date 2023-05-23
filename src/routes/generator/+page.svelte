@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { isMapModalOpen, files, startModalOpen, imageLinkFromUser } from './stores';
+	import { isMapModalOpen, files, startModalOpen, imageLinkFromUser, showMenu } from './stores';
 	import MapModal from './MapModal.svelte';
 	import Toolbar from './Toolbar.svelte';
 	import Canvas from './Canvas.svelte';
@@ -19,7 +19,7 @@
 	<MapModal />
 {/if}
 
-<div class="pageWrapper">
+<div class="pageWrapper" on:click={() => ($showMenu ? ($showMenu = false) : null)}>
 	<Toolbar />
 	<Canvas />
 </div>
